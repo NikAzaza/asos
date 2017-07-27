@@ -1,0 +1,72 @@
+<footer id="footer">
+    <div class="navbar-default">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 newsletter">
+                <span class="subscribe">Sign up for ASOS style news</span>
+                 <form class="navbar-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter Email Address"
+                            name="usersEmail" [(ngModel)]="usersEmail">
+                    </div>
+                    <button type="submit" class="btn btn-default">Women</button>
+                    <button type="submit" class="btn btn-default">Men</button>
+                </form> 
+                </div><!-- End of newsletter-->
+            </div>
+        </div>  
+    </div>
+        
+    <div class="footer-info">
+        <div class="container">
+            <section class="info-section">
+                <h6 class="info-title">questions?</h6>
+                <ul class="info">
+                    <li *ngFor="let item of question"><a href={{item.ref}} target="_blank">{{item.value}}</a></li>
+                </ul>
+            </section><!--
+            --><section class="info-section">
+                <h6 class="info-title">What's in store</h6>
+                <ul class="info">
+                    <li *ngFor="let item of whatInStore"><a href={{item.ref}} target="_blank">{{item.value}}</a></li>
+                </ul>
+            </section><!--
+            --><section class="info-section">
+                <h6 class="info-title">follow asos</h6>
+                <ul class="info">
+                    <li *ngFor="let item of followAsos"><a href={{item.ref}} target="_blank">{{item.value}}</a></li>
+                </ul>
+            </section><!--
+            --><section class="info-section">
+                <h6 class="info-title">more about asos</h6>
+                <ul class="info">
+                    <li *ngFor="let item of moreAboutAsos"><a href={{item.ref}} target="_blank">{{item.value}}</a></li>
+                </ul>
+            </section><!--
+            --><section class="info-section">
+                <h6 class="info-title">more asos sites</h6>
+                <ul class="info">
+                    <li *ngFor="let item of moreAsosSites"><a href={{item.ref}} target="_blank">{{item.value}}</a></li>
+                </ul>
+            </section>
+        </div>
+    </div> <!-- End of footer-info-->  
+
+    <div class="footer-info">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-2">
+                    <img alt="" src="http://content.asos-media.com/~/media/010101120000ru-RU/Images/global/footer/comodo-lock.gif">
+                </div>
+                <div class="col-sm-8">
+
+                </div>
+
+                <div class="col-sm-2">
+                    <span class="copyright">&copy; 2017 asos.com Ltd</span>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

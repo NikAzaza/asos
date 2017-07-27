@@ -1,0 +1,181 @@
+<header id="header"> 
+    <div class="nav-sites">
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active" routerLink="/"><a >asos</a></li>
+                <li role="presentation" id="marketplace" >
+                    <a href="https://marketplace.asos.com" target="_blank">marketplace</a>
+                    <div class="hint hidden-xs">
+                        <p class="hint-text">Home to the world's hottest <br>new brands and vintage bouyiques<br></p>
+                    </div>
+                </li>     
+            </ul>
+        </div>  
+    </div>
+    
+    
+    <nav class="navbar navbar-default">
+        <div class="container">
+            
+            <div class="navbar-header-container clearfix">
+                <div class="navbar-header">
+                    <a class="navbar-brand" routerLink="/">
+                        <img src="https://assets.asosservices.com/MasterLayout/images/_header/asos-logo.png" alt="ASOS Discover Fashion Online">
+                    </a>
+                </div>
+            </div><!--  End of Navbar-header-->
+        
+            <div class="form-search-container">
+                <form class="navbar-form" #formSearch="ngForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search ASOS" name="search" [(ngModel)]="searchString">
+                    </div>
+                    <span class="search-buttons">
+                        <button class="btn btn-default clear-search" (click)="clearSearchString()" [ngClass]="{invisible: !searchString.length}">
+                            <i class="glyphicon glyphicon-remove-sign" ></i>
+                        </button>
+                        <button type="submit" class="btn btn-default start-search" >
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                    
+                </form>
+            </div><!-- End of Form-search -->
+
+            <div class="welcome-navbar-container pull-right">
+                <ul class="nav navbar-nav clearfix">
+                    <li>
+                        <div class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">руб РУБ <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                        
+                    <li>
+                        <ul class="sign-in-list pull-right">
+                            <li><a href="" class="welcome">Welcome to ASOS</a></li>
+                            <li><a href="#">Join</a></li>
+                            <li><a href="#">Sign In</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- End of welcome-navbar  -->
+            
+        </div>
+
+        <div class="container">
+            <div class="navbar-categories category-main pull-left">
+                <ul class="navbar">
+                    <li><a routerLink="/"><i class="glyphicon glyphicon-home"></i></a></li><!--
+                    --><li id="woman" (mouseenter)="showCategory(category1, item1)" #item1 
+                        (mouseleave)="hideCategory(category1, item1)"><a [routerLink]="['/products', 'women']"
+                            >women</a>
+                    </li><!--
+                    --><li id="man" (mouseenter)="showCategory(category2, item2)" #item2 
+                        (mouseleave)="hideCategory(category2, item2)"><a [routerLink]="['/products', 'men']"
+                            >men</a></li>
+                </ul>
+
+                <div class="hidden-categories" id="category-woman" #category1 
+                        (mouseenter)="showCategory(category1, item1)" 
+                        (mouseleave)="hideCategory(category1, item1)">
+                        <div class="hidden-categories-container">
+
+                            <section class="shop-by-product">
+                                <div class="category-section-title">
+                                    <span>shop by product</span>
+                                </div>
+                                <ul class="section-list">
+                                    <li><a [routerLink]="['/products', 'women']">Все категории</a></li>
+                                    <li *ngFor="let item of women.products">
+                                       <a [routerLink]="['/products','women']" [queryParams]=item.params>{{item.value}}</a> 
+                                    </li>
+                                </ul>
+                            </section><!-- End of shop by product section-->
+
+                            <section class="brands">
+                                <div class="category-section-title">
+                                    <span>brands</span>
+                                </div>
+                                <ul class="section-list">
+                                    <li><a [routerLink]="['/products', 'women']" >Все категории</a></li>
+                                    <li *ngFor="let item of women.brands">
+                                        <a [routerLink]="['/products','women']" [queryParams]=item.params>{{item.value}}</a> 
+                                        
+                                    </li>
+                                </ul>
+                            </section><!-- End of brands section-->
+                                
+                            <section class="edit">
+                                <div class="category-section-title">
+                                    <span>edits</span>
+                                </div>
+                                <ul class="section-list">
+                                    <li *ngFor="let item of women.edits">
+                                        <a [routerLink]="['/products','women']" [queryParams]=item.params>{{item.value}}</a> 
+                                    </li>
+                                </ul>
+                            </section><!-- End of edits section-->
+                        </div>
+                   
+
+                    
+                </div><!-- End of woman cathegory-->
+                
+                <div class="hidden-categories" id="category-man" #category2
+                    (mouseenter)="showCategory(category2, item2)" 
+                        (mouseleave)="hideCategory(category2, item2)">
+                    <section class="shop-by-product">
+                        <div class="category-section-title">
+                            <span>shop by product</span>
+                        </div>
+                        <ul class="section-list">
+                            <li><a [routerLink]="['/products', 'men']" >Все категории</a></li>
+                            <li *ngFor="let item of men.products">
+                                <a [routerLink]="['/products','men']" [queryParams]=item.params>{{item.value}}</a>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="brands">
+                         <div class="category-section-title">
+                            <span>brands</span>
+                        </div>
+                        <ul class="section-list">
+                            <li><a [routerLink]="['/products', 'men']" >Все категории</a></li>
+                            <li *ngFor="let item of men.brands">
+                                <a [routerLink]="['/products','men']" [queryParams]=item.params>{{item.value}}</a>
+                            </li>
+                        </ul>
+                    </section>
+                        
+                    <section class="edit">
+                        <div class="category-section-title">
+                            <span>edits</span>
+                        </div>
+                        <ul class="section-list">
+                            <li *ngFor="let item of men.edits">
+                                <a [routerLink]="['/products','men']" [queryParams]=item.params>{{item.value}}</a>
+                            </li>
+                        </ul>
+                    </section>
+                </div><!-- End of man cathegory-->
+            </div><!-- End of main cathegory-->
+            
+            <div class="navbar-categories category-user pull-right">
+                <ul class="navbar">
+                    <li><a href="">Help</a></li>
+                    <li id="woman"><a href="">My Account</a></li>
+                    <li id="man"><a href="">Saved Items</a></li>
+                    <li id="man"><a href="">Bag ... руб</a></li>
+                </ul>
+            </div><!-- End of main cathegory-->
+        </div>
+    </nav><!-- End of navbar-default-->
+</header> 
