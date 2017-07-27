@@ -3,11 +3,8 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import { LoadCategoriesService } from "./load-categories.service";
 
-import { Observable } from "rxjs/Observable";
-import { Observer } from "rxjs/Observer";
 import { Subject } from "rxjs/Subject";
 import "rxjs/add/operator/map";
-//import { ProductsListComponent } from "./../products-list/products-list.component";
 
 import { Product } from "./../source/product";
 
@@ -18,9 +15,7 @@ import { Product } from "./../source/product";
     styleUrls: ['./../../filter/filter.component.css'],
     providers: [LoadCategoriesService]
 })
-export class FilterComponent implements OnInit{
-    data: Observable<Object>;
- 
+export class FilterComponent implements OnInit{ 
     parentSubject:Subject<Object> = new Subject();
 
     notifyChildren() {
@@ -38,7 +33,6 @@ export class FilterComponent implements OnInit{
     //массив с именами категорий
     categoryNames: String[] = [];
 
-    filterFromUrl = {};
     resultFilter: Object = {};
     
     
@@ -48,7 +42,6 @@ export class FilterComponent implements OnInit{
                 private elemRef:ElementRef ) { }
 
     ngOnInit(): void {
-        this.getObjectFromUrl();
         this.clearCheckBoxes();
    
         this.categories.getCategories().subscribe((obj:Object)=>{
@@ -58,29 +51,10 @@ export class FilterComponent implements OnInit{
 
         this.router.events.subscribe(() =>{
             this.reloadFilter();
-            this.getObjectFromUrl();
-            this.addUrlFilterToResultFilter();
-
             this.notifyChildren();
             this.clearCheckBoxes();
         });   
     }
-
-    getObjectFromUrl(){
-        this.filterFromUrl = {};
-
-        this.activateRoute.queryParams.subscribe((params: Params) => {
-            for (var key in params) {
-                if (params.hasOwnProperty(key)) {
-                    let parametr = params[key];
-                    
-                    this.filterFromUrl[key] = parametr;
-                }
-            }
-        });
-
-
-    } 
 
     reloadFilter(){
 
@@ -104,21 +78,7 @@ export class FilterComponent implements OnInit{
         
     }
 
-   
-    addUrlFilterToResultFilter(){
-        this.resultFilter = {};
-        for (let key in this.filterFromUrl) {
-            if (this.filterFromUrl.hasOwnProperty(key)) {
-                let filterCategory = this.filterFromUrl[key];
-                
-                this.resultFilter[key] = [];
-                this.resultFilter[key].push(filterCategory);
-            }
-        }
-    }
-
     clearFilter(){
-        this.filterFromUrl = {};
         this.resultFilter = {};
 
         let gender = this.activateRoute.snapshot.params['gender'];
@@ -137,8 +97,7 @@ export class FilterComponent implements OnInit{
         }
     }
 
-
-    log(p1:number, p2:number){
+    changeFilter(p1:number, p2:number){
         let el = document.getElementById(p1+"_"+p2);
 
         let category = '' + this.categoryNames[p1];
@@ -155,7 +114,6 @@ export class FilterComponent implements OnInit{
                 if (item == currParam) hasInUrl = true;
             }
         }
-
 
         //if URL haven't item 
         if (!hasInUrl){
